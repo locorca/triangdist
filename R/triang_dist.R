@@ -52,3 +52,29 @@ ptriang <- function(q, min, max, mode) {
 
   return(res)
 }
+
+#' Quantile function for the triangular distribution
+#' @param p vector of probabilities
+#' @param min lower limit
+#' @param max upper limit
+#' @param mode mode
+#' @return A numeric vector of quantiles
+#' @export
+
+qtriang <- function(p, min, max, mode) {
+
+  if (any(min > max)) stop("min must be less than or equal to max")
+  if (any(mode < min | mode > max)) stop("mode must be within [min, max]")
+  if (any(p < 0 | p > 1)) stop("p must be in [0,1]")
+
+  res <- numeric(length(p))
+  p_mode <- (mode - min) / (max - min)
+
+  idx1 <- p < p_mode
+  res[idx1] <- min + sqrt(p[idx1] * (max - min) * (mode - min))
+
+  idx2 <- p >= p_mode
+  res[idx2] <- max - sqrt((1 - p[idx2]) * (max - min) * (max - mode))
+
+  return(res)
+}
