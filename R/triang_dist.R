@@ -21,7 +21,7 @@ dtriang <- function(x, min, max, mode) {
   idx2 <- x >= mode & x <= max
   pdf[idx2] <- h * (max - x[idx2]) / (max - mode)
 
-  return(pdf)
+  pdf
 }
 
 #' Distribution function for the triangular distribution
@@ -39,18 +39,15 @@ ptriang <- function(q, min, max, mode) {
 
   res <- numeric(length(q))
 
-  #a <= q < c
   idx1 <- q >= min & q < mode
   res[idx1] <- (q[idx1] - min)^2 / ((max - min) * (mode - min))
 
-  #c <= q <= b
   idx2 <- q >= mode & q <= max
   res[idx2] <- 1 - (max - q[idx2])^2 / ((max - min) * (max - mode))
 
-  #q > b
   res[q > max] <- 1
 
-  return(res)
+  res
 }
 
 #' Quantile function for the triangular distribution
@@ -76,7 +73,7 @@ qtriang <- function(p, min, max, mode) {
   idx2 <- p >= p_mode
   res[idx2] <- max - sqrt((1 - p[idx2]) * (max - min) * (max - mode))
 
-  return(res)
+  res
 }
 
 #' Random generation for the triangular distribution
@@ -89,5 +86,5 @@ qtriang <- function(p, min, max, mode) {
 
 rtriang <- function(n, min, max, mode) {
 
-  return(qtriang(runif(n), min, max, mode))
+  qtriang(runif(n), min, max, mode)
 }
