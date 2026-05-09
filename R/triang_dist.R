@@ -4,6 +4,8 @@
 #' @param max upper limit
 #' @param mode mode
 #' @return A numeric vector of densities
+#' @examples
+#' dtriang(0.5, 0, 1, 0.5)
 #' @export
 
 dtriang <- function(x, min, max, mode) {
@@ -30,6 +32,8 @@ dtriang <- function(x, min, max, mode) {
 #' @param max upper limit
 #' @param mode mode
 #' @return A numeric vector of probabilities
+#' @examples
+#' ptriang(0.5, 0, 1, 0.5)
 #' @export
 
 ptriang <- function(q, min, max, mode) {
@@ -56,6 +60,8 @@ ptriang <- function(q, min, max, mode) {
 #' @param max upper limit
 #' @param mode mode
 #' @return A numeric vector of quantiles
+#' @examples
+#' qtriang(0.5, 0, 1, 0.5)
 #' @export
 
 qtriang <- function(p, min, max, mode) {
@@ -82,6 +88,8 @@ qtriang <- function(p, min, max, mode) {
 #' @param max upper limit
 #' @param mode mode
 #' @return A numeric vector of random values
+#' @examples
+#' rtriang(5, 0, 1, 0.5)
 #' @export
 
 rtriang <- function(n, min, max, mode) {
